@@ -9,7 +9,9 @@ import {
   type TimelineEvent,
 } from "@/components/blocks/interactive-timeline";
 import { AnimatedCounter } from "@/components/blocks/animated-counter";
-import { ProgressSteps } from "@/components/blocks/progress-steps";
+import {
+  QRCodeGenerator,
+} from "@/components/blocks/qrcode-generator";
 import { ColorPalettePicker } from "@/components/blocks/color-palette-picker";
 import { FileText, UserIcon, TrendingUp, Hash } from "lucide-react";
 
@@ -177,6 +179,16 @@ export default function Home() {
     },
   ];
 
+  const qrColors = [
+    "#000000",
+    "#3B82F6",
+    "#EF4444",
+    "#10B981",
+    "#F59E0B",
+    "#8B5CF6",
+    "#EC4899",
+  ];
+
   return (
     <div className="min-h-screen bg-background p-8 space-y-16">
       <div className="max-w-7xl mx-auto">
@@ -208,12 +220,13 @@ export default function Home() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-8">Progress Steps</h2>
-            <ProgressSteps
-              steps={progressSteps}
-              initialStep={0}
-              onStepChange={(step) => console.log("Step changed:", step)}
-              onComplete={() => console.log("All steps completed!")}
+            <h2 className="text-2xl font-semibold mb-8">QR Code Generator</h2>
+            <QRCodeGenerator
+              defaultText="https://shadcnblocks.com"
+              colors={qrColors}
+              onGenerate={(text, qrDataUrl) =>
+                console.log("QR generated for:", text)
+              }
             />
           </section>
 
